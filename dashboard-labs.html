@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        const token = localStorage.getItem('hms_token');
+        const user = JSON.parse(localStorage.getItem('hms_user') || 'null');
+        if (!token || !user || user.role !== 'labs') {
+          localStorage.removeItem('hms_token');
+          localStorage.removeItem('hms_user');
+          window.location.href = 'index.html';
+        }
+      })();
+    <\/script>
+    <title>Labs Dashboard - MediCare Plus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-bg-3d">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>MediCare Plus</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-item active" data-section="overview">
+                <i class="fas fa-th-large"></i><span>Overview</span>
+            </a>
+            <a href="#test-orders" class="nav-item" data-section="test-orders">
+                <i class="fas fa-vial"></i><span>Test Orders</span>
+            </a>
+            <a href="#reports" class="nav-item" data-section="reports">
+                <i class="fas fa-file-medical"></i><span>Reports</span>
+            </a>
+            <a href="#upload" class="nav-item" data-section="upload">
+                <i class="fas fa-upload"></i><span>Upload Report</span>
+            </a>
+            <a href="#billing" class="nav-item" data-section="billing">
+                <i class="fas fa-file-invoice-dollar"></i><span>Billing</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h1>Laboratory Dashboard</h1>
+            </div>
+            <div class="top-bar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i><span class="badge">6</span>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar"><i class="fas fa-flask"></i></div>
+                    <div class="user-details">
+                        <p class="user-name">MedLabs Central</p>
+                        <p class="user-id">Lab-001</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section id="overview" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Laboratory Overview</h2>
+                    <p>Test orders and reports summary</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon blue"><i class="fas fa-vial"></i></div>
+                        <div class="stat-info"><h3>18</h3><p>New Test Orders</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon orange"><i class="fas fa-spinner"></i></div>
+                        <div class="stat-info"><h3>8</h3><p>Processing</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info"><h3>42</h3><p>Completed Today</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon purple"><i class="fas fa-rupee-sign"></i></div>
+                        <div class="stat-info"><h3>₹38,500</h3><p>Today's Revenue</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="test-orders" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Incoming Test Orders</h2>
+                    <p>Lab tests ordered by doctors</p>
+                </div>
+                <div class="reports-table-wrapper card-3d-hover">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>Doctor</th>
+                                <th>Test</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dynamically populated by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="reports" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Test Reports</h2>
+                    <p>Completed lab reports ready for delivery</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header"><h3><i class="fas fa-check-circle"></i> Completed Reports</h3></div>
+                        <div class="card-body">
+                            <!-- Dynamically populated by app.js -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="upload" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Upload Lab Report</h2>
+                    <p>Upload test results and send to patient</p>
+                </div>
+                <div class="profile-card card-3d-hover">
+                    <form id="uploadForm" class="prescription-form">
+                        <div class="form-section">
+                            <h4><i class="fas fa-user"></i> Patient Information</h4>
+                            <div class="form-row">
+                                <div class="form-group-3d">
+                                    <label>Patient ID</label>
+                                    <input type="text" id="patientId" placeholder="Enter Patient ID" required>
+                                </div>
+                                <div class="form-group-3d">
+                                    <label>Test Type</label>
+                                    <select id="testType" required>
+                                        <option value="">Select Test</option>
+                                        <option value="cbc">Complete Blood Count</option>
+                                        <option value="xray">X-Ray</option>
+                                        <option value="ecg">ECG</option>
+                                        <option value="mri">MRI</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h4><i class="fas fa-upload"></i> Upload Report</h4>
+                            <div class="upload-area" onclick="document.getElementById('reportFile').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload lab report (PDF, Image)</p>
+                                <input type="file" id="reportFile" accept=".pdf,image/*" style="display: none;">
+                            </div>
+                            <div id="filePreview"></div>
+                        </div>
+                        <div class="form-section">
+                            <h4><i class="fas fa-comment-medical"></i> Remarks</h4>
+                            <div class="form-group-3d">
+                                <textarea id="remarks" rows="3" placeholder="Add any remarks or notes about the test results"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-3d btn-primary">
+                                <i class="fas fa-paper-plane"></i> Send to Patient
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="billing" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Lab Billing</h2>
+                    <p>Generate bills for lab tests</p>
+                </div>
+                <div class="bills-list">
+                    <div class="bill-card card-3d-hover">
+                        <div class="bill-header">
+                            <div class="bill-type">
+                                <i class="fas fa-vial"></i>
+                                <div><h4>Bill #LB-5678</h4><p>John Doe - CBC Test</p></div>
+                            </div>
+                            <span class="status-badge pending">Unpaid</span>
+                        </div>
+                        <div class="bill-body">
+                            <div class="bill-detail"><span>Test:</span><strong>Complete Blood Count</strong></div>
+                            <div class="bill-detail"><span>Amount:</span><strong class="amount">₹2,200</strong></div>
+                            <div class="bill-detail"><span>Date:</span><strong>April 15, 2026</strong></div>
+                        </div>
+                        <div class="bill-actions">
+                            <button class="btn-3d btn-small btn-primary" onclick="generateBill('LB-5678')">
+                                <i class="fas fa-file-invoice"></i> Generate Receipt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

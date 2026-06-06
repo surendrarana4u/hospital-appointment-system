@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        const token = localStorage.getItem('hms_token');
+        const user = JSON.parse(localStorage.getItem('hms_user') || 'null');
+        if (!token || !user || user.role !== 'reception') {
+          localStorage.removeItem('hms_token');
+          localStorage.removeItem('hms_user');
+          window.location.href = 'index.html';
+        }
+      })();
+    <\/script>
+    <title>Reception Dashboard - MediCare Plus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-bg-3d">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>MediCare Plus</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-item active" data-section="overview">
+                <i class="fas fa-th-large"></i><span>Overview</span>
+            </a>
+            <a href="#patients" class="nav-item" data-section="patients">
+                <i class="fas fa-users"></i><span>Patients</span>
+            </a>
+            <a href="#appointments" class="nav-item" data-section="appointments">
+                <i class="fas fa-calendar-check"></i><span>Appointments</span>
+            </a>
+            <a href="#payments" class="nav-item" data-section="payments">
+                <i class="fas fa-money-check-alt"></i><span>Payments</span>
+            </a>
+            <a href="#create-patient" class="nav-item" data-section="create-patient">
+                <i class="fas fa-user-plus"></i><span>Register Patient</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h1>Reception Dashboard</h1>
+            </div>
+            <div class="top-bar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i><span class="badge">10</span>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar"><i class="fas fa-concierge-bell"></i></div>
+                    <div class="user-details">
+                        <p class="user-name">Reception Desk</p>
+                        <p class="user-id">Reception-001</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section id="overview" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Reception Overview</h2>
+                    <p>Front desk management summary</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        <div class="stat-info"><h3>1,245</h3><p>Total Patients</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon orange"><i class="fas fa-calendar-day"></i></div>
+                        <div class="stat-info"><h3>35</h3><p>Today's Appointments</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="stat-info"><h3>₹52,000</h3><p>Payments Today</p></div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon purple"><i class="fas fa-user-plus"></i></div>
+                        <div class="stat-info"><h3>8</h3><p>New Registrations</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="patients" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Patient Management</h2>
+                    <p>View and manage patient records</p>
+                </div>
+                <div class="reports-table-wrapper card-3d-hover">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>ID</th>
+                                <th>Phone</th>
+                                <th>Last Visit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsTableBody">
+                            <!-- Patients will be loaded here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="appointments" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Appointment Management</h2>
+                    <p>Schedule and manage appointments</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header"><h3><i class="fas fa-calendar-day"></i> Today's Schedule</h3></div>
+                        <div class="card-body">
+                            <div class="appointment-item">
+                                <div class="appointment-date"><span class="time-badge">9:00</span></div>
+                                <div class="appointment-details">
+                                    <h4>John Doe - Dr. Smith</h4>
+                                    <p>Follow-up Consultation</p>
+                                </div>
+                                <span class="badge badge-primary">Confirmed</span>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appointment-date"><span class="time-badge">10:30</span></div>
+                                <div class="appointment-details">
+                                    <h4>Jane Smith - Dr. Smith</h4>
+                                    <p>New Consultation</p>
+                                </div>
+                                <span class="badge badge-warning">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="payments" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Payment Verification</h2>
+                    <p>Verify and confirm payments from patients</p>
+                </div>
+                <div class="bills-list">
+                    <div class="bill-card card-3d-hover">
+                        <div class="bill-header">
+                            <div class="bill-type">
+                                <i class="fas fa-user-md"></i>
+                                <div><h4>Doctor Consultation</h4><p>John Doe - Dr. Smith</p></div>
+                            </div>
+                            <span class="status-badge pending">Pending Verification</span>
+                        </div>
+                        <div class="bill-body">
+                            <div class="bill-detail"><span>Amount:</span><strong class="amount">₹2,500</strong></div>
+                            <div class="bill-detail"><span>Date:</span><strong>April 15, 2026</strong></div>
+                            <div class="bill-detail"><span>Payment Method:</span><strong>Cash</strong></div>
+                        </div>
+                        <div class="bill-actions">
+                            <button class="btn-3d btn-small btn-primary" onclick="verifyPayment('PAY-001')">
+                                <i class="fas fa-check-circle"></i> Verify Payment
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bill-card card-3d-hover">
+                        <div class="bill-header">
+                            <div class="bill-type">
+                                <i class="fas fa-pills"></i>
+                                <div><h4>Pharmacy Bill</h4><p>John Doe - Prescription #1234</p></div>
+                            </div>
+                            <span class="status-badge paid">Verified</span>
+                        </div>
+                        <div class="bill-body">
+                            <div class="bill-detail"><span>Amount:</span><strong class="amount">₹1,800</strong></div>
+                            <div class="bill-detail"><span>Date:</span><strong>April 15, 2026</strong></div>
+                            <div class="bill-detail"><span>Verified By:</span><strong>Reception-001</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="create-patient" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Register New Patient</h2>
+                    <p>Create unique patient ID and register patient</p>
+                </div>
+                <div class="profile-card card-3d-hover">
+                    <form id="patientForm" class="prescription-form">
+                        <div class="form-section">
+                            <h4><i class="fas fa-user"></i> Patient Information</h4>
+                            <div class="form-row">
+                                <div class="form-group-3d">
+                                    <label>Full Name</label>
+                                    <input type="text" id="fullName" required>
+                                </div>
+                                <div class="form-group-3d">
+                                    <label>Age</label>
+                                    <input type="number" id="age" min="1" max="150" required>
+                                </div>
+                                <div class="form-group-3d">
+                                    <label>Gender</label>
+                                    <select id="gender" required>
+                                        <option value="">Select</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group-3d">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                                <div class="form-group-3d">
+                                    <label>Email</label>
+                                    <input type="email" id="email">
+                                </div>
+                            </div>
+                            <div class="form-group-3d">
+                                <label>Address</label>
+                                <textarea id="address" rows="2" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-3d btn-primary">
+                                <i class="fas fa-user-plus"></i> Create Patient ID
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

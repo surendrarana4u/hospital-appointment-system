@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Plus - Healthcare Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- 3D Background Animation -->
+    <div class="bg-3d-container" id="mainBg">
+        <div class="cube cube-1"></div>
+        <div class="cube cube-2"></div>
+        <div class="cube cube-3"></div>
+        <div class="cube cube-4"></div>
+        <div class="cube cube-5"></div>
+        <div class="floating-dna"></div>
+    </div>
+
+    <!-- Auth Background (for login/register/otp) -->
+    <div class="auth-bg-3d" id="authBg" style="display: none;">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.clipartmax.com/png/middle/2-21121_medical-clipart-doctor-symbol-5star-with-wings-tattoo.png"class="logo-img">
+            </div>
+            <ul class="nav-links" id="mainNav">
+                <li><a href="#home" class="active" data-page="home">Home</a></li>
+                <li><a href="#about" data-page="home">About Us</a></li>
+                <li><a href="#services" data-page="home">Services</a></li>
+                <li><a href="#doctors" data-page="home">Doctors</a></li>
+                <li><a href="#contact" data-page="home">Contact</a></li>
+                <li><a href="#" class="btn-login" id="navLoginBtn">Login</a></li>
+                <li><a href="#" class="btn-appointment" id="navRegisterBtn">Book Appointment</a></li>
+            </ul>
+            <ul class="nav-links" id="authNav" style="display: none;">
+                <li><a href="#" class="btn-back" id="backToHome">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="back-text">Back to Home</span>
+                    </a></li>
+            </ul>
+            <!-- Mobile Back Button (always visible on auth pages) -->
+            <a href="#" class="mobile-back-btn" id="mobileBackBtn" style="display: none;">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Website Pages -->
+    <div id="mainWebsite">
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="text-3d">Your Health</span><br>
+                            <span class="gradient-text">Our Priority</span>
+                        </h1>
+                        <p class="hero-subtitle">Advanced healthcare management system with cutting-edge technology for
+                            better patient care</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-3d btn-primary" id="heroRegisterBtn">
+                                <span>Book Appointment</span>
+                                <div class="btn-3d-bg"></div>
+                            </a>
+                            <a href="#services" class="btn-3d btn-secondary">
+                                <span>Explore Services</span>
+                                <div class="btn-3d-bg"></div>
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item stat-3d">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Expert Doctors</div>
+                            </div>
+                            <div class="stat-item stat-3d">
+                                <div class="stat-number">10K+</div>
+                                <div class="stat-label">Happy Patients</div>
+                            </div>
+                            <div class="stat-item stat-3d">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Emergency Care</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-3d-wrapper">
+                            <div class="image-3d">
+                                <i class="fas fa-hospital-user"></i>
+                            </div>
+                            <div class="floating-card card-1">
+                                <i class="fas fa-stethoscope"></i>
+                                <span>Expert Care</span>
+                            </div>
+                            <div class="floating-card card-2">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Secure & Private</span>
+                            </div>
+                            <div class="floating-card card-3">
+                                <i class="fas fa-clock"></i>
+                                <span>24/7 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title text-3d">About Us</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Leading the Future of Healthcare</h3>
+                        <p>MediCare Plus is a state-of-the-art healthcare management system designed to streamline
+                            medical services and enhance patient experience. Our platform integrates advanced technology
+                            with compassionate care.</p>
+                        <ul class="about-features">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Advanced Medical Technology</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Experienced Medical Professionals</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Patient-Centric Approach</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>24/7 Emergency Services</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <div class="image-3d-wrapper">
+                            <div class="image-3d about-3d">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title text-3d">Our Services</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Comprehensive healthcare services for your well-being</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <h3>General Consultation</h3>
+                                <p>Expert doctors available for general health checkups and consultations</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Available 24/7</h3>
+                                <p>Book your appointment anytime with our experienced physicians</p>
+                                <a href="#" class="btn-small spa-register">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h3>Cardiology</h3>
+                                <p>Advanced cardiac care with cutting-edge diagnostic equipment</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Heart Specialists</h3>
+                                <p>Our cardiologists provide comprehensive heart care</p>
+                                <a href="#" class="btn-small spa-register">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-x-ray"></i>
+                                </div>
+                                <h3>Diagnostics & Labs</h3>
+                                <p>State-of-the-art laboratory services and diagnostic imaging</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Quick Reports</h3>
+                                <p>Get your test results digitally within 24 hours</p>
+                                <a href="#" class="btn-small spa-register">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <h3>Pharmacy</h3>
+                                <p>In-house pharmacy with digital prescription management</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Easy Pickup</h3>
+                                <p>Order medicines online and pick up at your convenience</p>
+                                <a href="#" class="btn-small spa-register">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-ambulance"></i>
+                                </div>
+                                <h3>Emergency Care</h3>
+                                <p>24/7 emergency services with rapid response teams</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Always Ready</h3>
+                                <p>Our emergency team is prepared for any situation</p>
+                                <a href="#" class="btn-small spa-register">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-card card-3d">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3>Neurology</h3>
+                                <p>Specialized neurological care and brain health services</p>
+                            </div>
+                            <div class="card-3d-back">
+                                <h3>Brain Experts</h3>
+                                <p>Advanced treatment for neurological conditions</p>
+                                <a href="#" class="btn-small spa-register">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctors Section -->
+        <section id="doctors" class="doctors">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title text-3d">Our Doctors</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Meet our team of experienced medical professionals</p>
+                </div>
+                <div class="doctors-slider-container">
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="doctors-grid">
+                    <div class="doctor-card-3d">
+                        <div class="doctor-card-inner">
+                            <div class="doctor-card-front">
+                                <div class="doctor-image-container">
+                                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Dr. Anish Kumar" class="doctor-img">
+                                    <div class="doctor-overlay">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="doctor-info">
+                                    <h3>Dr. Anish Kumar</h3>
+                                    <p class="specialty">Cardiologist</p>
+                                    <p class="experience">15+ Years Experience</p>
+                                    <div class="doctor-social">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doctor-card-back">
+                                <h3>Dr. Anish Kumar</h3>
+                                <p class="specialty">Cardiologist</p>
+                                <div class="doctor-details">
+                                    <p><i class="fas fa-graduation-cap"></i> MBBS, MD, DM (Cardiology)</p>
+                                    <p><i class="fas fa-hospital"></i> Apollo Hospital</p>
+                                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                                </div>
+                                <p class="doctor-bio">Specialist in interventional cardiology with expertise in treating complex heart conditions.</p>
+                                <a href="#" class="btn-3d btn-primary btn-small spa-register">
+                                    <span>Book Appointment</span>
+                                    <div class="btn-3d-bg"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-card-3d">
+                        <div class="doctor-card-inner">
+                            <div class="doctor-card-front">
+                                <div class="doctor-image-container">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8RMiyZFISTcW0YgeOGUT2QSU9NCYZ-uuvVw&s" alt="Dr. Manish Kumar" class="doctor-img">
+                                    <div class="doctor-overlay">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="doctor-info">
+                                    <h3>Dr. Manish Kumar</h3>
+                                    <p class="specialty">Neurologist</p>
+                                    <p class="experience">12+ Years Experience</p>
+                                    <div class="doctor-social">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doctor-card-back">
+                                <h3>Dr. Manish Kumar</h3>
+                                <p class="specialty">Neurologist</p>
+                                <div class="doctor-details">
+                                    <p><i class="fas fa-graduation-cap"></i> MBBS, MD, DM (Neurology)</p>
+                                    <p><i class="fas fa-hospital"></i> Max Hospital</p>
+                                    <p><i class="fas fa-phone"></i> +91 9876543211</p>
+                                </div>
+                                <p class="doctor-bio">Expert in neurological disorders with specialization in stroke and epilepsy treatment.</p>
+                                <a href="#" class="btn-3d btn-primary btn-small spa-register">
+                                    <span>Book Appointment</span>
+                                    <div class="btn-3d-bg"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-card-3d">
+                        <div class="doctor-card-inner">
+                            <div class="doctor-card-front">
+                                <div class="doctor-image-container">
+                                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" alt="Dr. Rajnish Kumar" class="doctor-img">
+                                    <div class="doctor-overlay">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="doctor-info">
+                                    <h3>Dr. Rajnish Kumar</h3>
+                                    <p class="specialty">General Physician</p>
+                                    <p class="experience">10+ Years Experience</p>
+                                    <div class="doctor-social">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doctor-card-back">
+                                <h3>Dr. Rajnish Kumar</h3>
+                                <p class="specialty">General Physician</p>
+                                <div class="doctor-details">
+                                    <p><i class="fas fa-graduation-cap"></i> MBBS, MD (Medicine)</p>
+                                    <p><i class="fas fa-hospital"></i> Fortis Hospital</p>
+                                    <p><i class="fas fa-phone"></i> +91 9876543212</p>
+                                </div>
+                                <p class="doctor-bio">Comprehensive primary care provider with focus on preventive medicine and chronic disease management.</p>
+                                <a href="#" class="btn-3d btn-primary btn-small spa-register">
+                                    <span>Book Appointment</span>
+                                    <div class="btn-3d-bg"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-card-3d">
+                        <div class="doctor-card-inner">
+                            <div class="doctor-card-front">
+                                <div class="doctor-image-container">
+                                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=400&fit=crop" alt="Dr. Shivam Kumar" class="doctor-img">
+                                    <div class="doctor-overlay">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="doctor-info">
+                                    <h3>Dr. Shivam Kumar</h3>
+                                    <p class="specialty">Orthopedic</p>
+                                    <p class="experience">18+ Years Experience</p>
+                                    <div class="doctor-social">
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doctor-card-back">
+                                <h3>Dr. Shivam Kumar</h3>
+                                <p class="specialty">Orthopedic</p>
+                                <div class="doctor-details">
+                                    <p><i class="fas fa-graduation-cap"></i> MBBS, MS (Ortho)</p>
+                                    <p><i class="fas fa-hospital"></i> AIIMS Hospital</p>
+                                    <p><i class="fas fa-phone"></i> +91 9876543213</p>
+                                </div>
+                                <p class="doctor-bio">Specialist in joint replacement surgery and sports medicine with extensive surgical experience.</p>
+                                <a href="#" class="btn-3d btn-primary btn-small spa-register">
+                                    <span>Book Appointment</span>
+                                    <div class="btn-3d-bg"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title text-3d">Contact Us</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-item info-3d">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Now it is in not ready</p>
+                            </div>
+                        </div>
+                        <div class="info-item info-3d">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 9142003185</p>
+                            </div>
+                        </div>
+                        <div class="info-item info-3d">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>rajnishkumar2k7@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item info-3d">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>Mon - Sun: 8:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form form-3d">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Your Phone" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-3d btn-primary">
+                                <span>Send Message</span>
+                                <div class="btn-3d-bg"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <img src="https://www.clipartmax.com/png/middle/2-21121_medical-clipart-doctor-symbol-5star-with-wings-tattoo.png" alt="Logo" class="footer-logo-img">
+                        </div>
+                        <p>Your trusted partner in healthcare excellence. Providing quality medical services with
+                            compassion and innovation.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#doctors">Doctors</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">General Consultation</a></li>
+                            <li><a href="#">Cardiology</a></li>
+                            <li><a href="#">Diagnostics</a></li>
+                            <li><a href="#">Pharmacy</a></li>
+                            <li><a href="#">Emergency Care</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Newsletter</h3>
+                        <p>Subscribe to get health tips and updates</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 MediCare Plus. All rights reserved.</p>
+                </div>
+            </div>
+    </div>
+    </footer>
+    </div>
+
+    <!-- Authentication Pages -->
+    <div id="authPages" style="display: none;">
+        <!-- Registration Form -->
+        <section class="auth-section" id="registerPage">
+            <div class="auth-container">
+                <div class="auth-card card-3d-wrapper">
+                    <div class="auth-card-inner">
+                        <div class="auth-card-front">
+                            <div class="auth-header">
+                                <div class="auth-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h1>Patient Registration</h1>
+                                <p>Create your account to book appointments</p>
+                            </div>
+
+                            <form class="auth-form" id="registrationForm">
+                                <div class="form-group-3d">
+                                    <label for="fullName">
+                                        <i class="fas fa-user"></i>
+                                        Full Name
+                                    </label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                                        required>
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group-3d">
+                                        <label for="age">
+                                            <i class="fas fa-calendar"></i>
+                                            Age
+                                        </label>
+                                        <input type="number" id="age" name="age" placeholder="Your age" min="1"
+                                            max="150" required>
+                                        <div class="input-line"></div>
+                                    </div>
+
+                                    <div class="form-group-3d">
+                                        <label for="gender">
+                                            <i class="fas fa-venus-mars"></i>
+                                            Gender
+                                        </label>
+                                        <select id="gender" name="gender" required>
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-3d">
+                                    <label for="phone">
+                                        <i class="fas fa-phone"></i>
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number"
+                                        pattern="[0-9]{10}" required>
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="form-group-3d">
+                                    <label for="email">
+                                        <i class="fas fa-envelope"></i>
+                                        Email Address (Optional)
+                                    </label>
+                                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="form-group-3d">
+                                    <label for="address">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Address
+                                    </label>
+                                    <textarea id="address" name="address" placeholder="Enter your address" rows="3"
+                                        required></textarea>
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="form-group-3d">
+                                    <label for="medicalHistory">
+                                        <i class="fas fa-notes-medical"></i>
+                                        Medical History (Optional)
+                                    </label>
+                                    <textarea id="medicalHistory" name="medicalHistory"
+                                        placeholder="Any existing medical conditions or allergies" rows="2"></textarea>
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">
+                                        I agree to the <a href="#" class="link">Terms & Conditions</a> and
+                                        <a href="#" class="link">Privacy Policy</a>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn-3d btn-primary btn-full">
+                                    <span>Register Now</span>
+                                    <div class="btn-3d-bg"></div>
+                                </button>
+
+                                <div class="auth-footer">
+                                    <p>Already have an account? <a href="#" class="link"
+                                            id="showLoginFromRegister">Login here</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Info Card -->
+                <div class="info-card-3d">
+                    <div class="info-content">
+                        <h2>Why Register?</h2>
+                        <ul class="benefits-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Book appointments with expert doctors</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>View prescriptions and medical reports</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Access your billing history</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Download NOC certificates</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Secure OTP-based login</span>
+                            </li>
+                        </ul>
+                        <div class="info-stats">
+                            <div class="info-stat">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>10K+</h3>
+                                    <p>Registered Patients</p>
+                                </div>
+                            </div>
+                            <div class="info-stat">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>4.9/5</h3>
+                                    <p>Patient Satisfaction</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Form -->
+        <section class="auth-section" id="loginPage" style="display: none;">
+            <div class="auth-container">
+                <div class="auth-card card-3d-wrapper">
+                    <div class="auth-card-inner">
+                        <div class="auth-card-front">
+                            <div class="auth-header">
+                                <div class="auth-icon">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </div>
+                                <h1>Patient Login</h1>
+                                <p>Enter your phone number to receive OTP</p>
+                            </div>
+
+                            <form class="auth-form" id="loginForm">
+                                <div class="form-group-3d">
+                                    <label for="loginPhone">
+                                        <i class="fas fa-phone"></i>
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" id="loginPhone" name="phone"
+                                        placeholder="Enter your registered phone number" pattern="[0-9]{10}" required>
+                                    <div class="input-line"></div>
+                                </div>
+
+                                <div class="info-box">
+                                    <i class="fas fa-info-circle"></i>
+                                    <p>We'll send a 6-digit OTP to your phone number for secure login</p>
+                                </div>
+
+                                <button type="submit" class="btn-3d btn-primary btn-full">
+                                    <span>Send OTP</span>
+                                    <div class="btn-3d-bg"></div>
+                                </button>
+
+                                <div class="auth-footer">
+                                    <p>Don't have an account? <a href="#" class="link"
+                                            id="showRegisterFromLogin">Register here</a></p>
+                                </div>
+
+                                <div class="divider">
+                                    <span>OR</span>
+                                </div>
+
+                                <div class="role-login">
+                                    <p style="text-align: center; color: var(--text-light); margin-bottom: 1rem;">
+                                        Staff Login
+                                    </p>
+                                    <div class="role-buttons">
+                                        <a href="#" class="role-btn">
+                                            <i class="fas fa-user-shield"></i>
+                                            Admin
+                                        </a>
+                                        <a href="#" class="role-btn">
+                                            <i class="fas fa-user-md"></i>
+                                            Doctor
+                                        </a>
+                                        <a href="#" class="role-btn">
+                                            <i class="fas fa-concierge-bell"></i>
+                                            Reception
+                                        </a>
+                                        <a href="#" class="role-btn">
+                                            <i class="fas fa-pills"></i>
+                                            Pharma
+                                        </a>
+                                        <a href="#" class="role-btn">
+                                            <i class="fas fa-flask"></i>
+                                            Labs
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Info Card -->
+                <div class="info-card-3d">
+                    <div class="info-content">
+                        <h2>Secure Login</h2>
+                        <div class="security-features">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>OTP Authentication</h4>
+                                    <p>Secure login with one-time password</p>
+                                </div>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-lock"></i>
+                                <div>
+                                    <h4>Encrypted Data</h4>
+                                    <p>Your information is fully protected</p>
+                                </div>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-user-check"></i>
+                                <div>
+                                    <h4>Verified Access</h4>
+                                    <p>Only authorized personnel can access</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="help-box">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Need Help?</h4>
+                            <p>Contact support at <strong>+91 9142003185</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTP Verification Form -->
+        <section class="auth-section" id="otpPage" style="display: none;">
+            <div class="auth-container">
+                <div class="auth-card card-3d-wrapper">
+                    <div class="auth-card-inner">
+                        <div class="auth-card-front">
+                            <div class="auth-header">
+                                <div class="auth-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <h1>OTP Verification</h1>
+                                <p>Enter the 6-digit code sent to your phone</p>
+                            </div>
+
+                            <form class="auth-form" id="otpForm">
+                                <div class="phone-display">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Phone: <strong id="displayPhone">+91 (555) ***-****</strong></span>
+                                </div>
+
+                                <div class="otp-inputs">
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                    <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                                </div>
+
+                                <div class="resend-otp">
+                                    <p id="timer" class="timer">Resend OTP in 60s</p>
+                                    <button type="button" id="resendOtp" class="link" disabled>
+                                        Resend OTP
+                                    </button>
+                                </div>
+
+                                <button type="submit" class="btn-3d btn-primary btn-full">
+                                    <span>Verify OTP</span>
+                                    <div class="btn-3d-bg"></div>
+                                </button>
+
+                                <div class="auth-footer">
+                                    <p>Wrong number? <a href="#" class="link" id="backToLoginFromOtp">Go back</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Info Card -->
+                <div class="info-card-3d">
+                    <div class="info-content">
+                        <h2>How it Works</h2>
+                        <div class="steps-list">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Enter Phone Number</h4>
+                                    <p>Provide your registered phone number on the login page</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Receive OTP</h4>
+                                    <p>Get a 6-digit verification code via SMS</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Enter OTP</h4>
+                                    <p>Input the code in the fields above</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Access Dashboard</h4>
+                                    <p>Get instant access to your medical records</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 2rem;">
+                            <i class="fas fa-lightbulb"></i>
+                            <p><strong>Tip:</strong> OTP expires in 10 minutes. If you don't receive it, click "Resend
+                                OTP" after 60 seconds.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Single Page Application Navigation
+        const mainWebsite = document.getElementById('mainWebsite');
+        const authPages = document.getElementById('authPages');
+        const mainNav = document.getElementById('mainNav');
+        const authNav = document.getElementById('authNav');
+        const mainBg = document.getElementById('mainBg');
+        const authBg = document.getElementById('authBg');
+        const navbar = document.getElementById('navbar');
+
+        // Pages
+        const registerPage = document.getElementById('registerPage');
+        const loginPage = document.getElementById('loginPage');
+        const otpPage = document.getElementById('otpPage');
+
+        // Navigation buttons
+        const navLoginBtn = document.getElementById('navLoginBtn');
+        const navRegisterBtn = document.getElementById('navRegisterBtn');
+        const backToHome = document.getElementById('backToHome');
+        const showLoginFromRegister = document.getElementById('showLoginFromRegister');
+        const showRegisterFromLogin = document.getElementById('showRegisterFromLogin');
+        const backToLoginFromOtp = document.getElementById('backToLoginFromOtp');
+        const mobileBackBtn = document.getElementById('mobileBackBtn');
+
+        // Show main website
+        function showMainWebsite() {
+            mainWebsite.style.display = 'block';
+            authPages.style.display = 'none';
+            mainNav.style.display = 'flex';
+            authNav.style.display = 'none';
+            mobileBackBtn.style.display = 'none';
+            mainBg.style.display = 'block';
+            authBg.style.display = 'none';
+            navbar.classList.remove('auth-navbar');
+            window.scrollTo(0, 0);
+        }
+
+        // Show auth pages
+        function showAuthPages() {
+            mainWebsite.style.display = 'none';
+            authPages.style.display = 'block';
+            mainNav.style.display = 'none';
+            authNav.style.display = 'flex';
+            // Show mobile back button on smaller screens
+            if (window.innerWidth <= 768) {
+                mobileBackBtn.style.display = 'flex';
+            } else {
+                mobileBackBtn.style.display = 'none';
+            }
+            mainBg.style.display = 'none';
+            authBg.style.display = 'block';
+            navbar.classList.add('auth-navbar');
+            window.scrollTo(0, 0);
+        }
+
+        // Show specific auth page
+        function showPage(page) {
+            registerPage.style.display = 'none';
+            loginPage.style.display = 'none';
+            otpPage.style.display = 'none';
+
+            switch (page) {
+                case 'register':
+                    registerPage.style.display = 'block';
+                    break;
+                case 'login':
+                    loginPage.style.display = 'block';
+                    break;
+                case 'otp':
+                    otpPage.style.display = 'block';
+                    // Display phone number
+                    const loginPhone = localStorage.getItem('loginPhone');
+                    if (loginPhone) {
+                        const masked = loginPhone.replace(/(\d{3})(\d{3})(\d{4})/, '+91 ($1) ***-$3');
+                        document.getElementById('displayPhone').textContent = masked;
+                    }
+                    break;
+            }
+        }
+
+        // Event Listeners
+        navLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAuthPages();
+            showPage('login');
+        });
+
+        navRegisterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAuthPages();
+            showPage('register');
+        });
+
+        // Hero button
+        const heroRegisterBtn = document.getElementById('heroRegisterBtn');
+        if (heroRegisterBtn) {
+            heroRegisterBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showAuthPages();
+                showPage('register');
+            });
+        }
+
+        // Service card "Book Now" buttons
+        document.querySelectorAll('.spa-register').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showAuthPages();
+                showPage('register');
+            });
+        });
+
+
+
+        backToHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMainWebsite();
+        });
+
+        mobileBackBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMainWebsite();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (authPages.style.display === 'block') {
+                if (window.innerWidth <= 768) {
+                    mobileBackBtn.style.display = 'flex';
+                } else {
+                    mobileBackBtn.style.display = 'none';
+                }
+            }
+        });
+
+        showLoginFromRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+
+        showRegisterFromLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('register');
+        });
+
+        backToLoginFromOtp.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+
+        // Auth form submissions handled by js/auth.js
+
+        // OTP Timer
+        let otpTimerInterval;
+        function startOTPTimer() {
+            const timerElement = document.getElementById('timer');
+            const resendBtn = document.getElementById('resendOtp');
+            let remaining = 60;
+
+            resendBtn.disabled = true;
+
+            if (otpTimerInterval) clearInterval(otpTimerInterval);
+
+            otpTimerInterval = setInterval(() => {
+                timerElement.textContent = `Resend OTP in ${remaining}s`;
+                remaining--;
+
+                if (remaining < 0) {
+                    clearInterval(otpTimerInterval);
+                    timerElement.textContent = '';
+                    resendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        // Resend OTP
+        const resendOtp = document.getElementById('resendOtp');
+        if (resendOtp) {
+            resendOtp.addEventListener('click', async () => {
+                resendOtp.disabled = true;
+
+                try {
+                    const phone = localStorage.getItem('loginPhone');
+                    if (!phone) throw new Error('Phone not found in session');
+                    
+                    if (typeof apiCall === 'function') {
+                        await apiCall('/auth/send-otp', 'POST', { phone });
+                    }
+                    
+                    showNotification('New OTP sent!', 'success');
+                    startOTPTimer();
+                } catch (error) {
+                    showNotification(error.message || 'Failed to resend OTP', 'error');
+                    resendOtp.disabled = false;
+                }
+            });
+        }
+
+        // Initialize
+        showMainWebsite();
+
+        console.log('%c MediCare Plus SPA Loaded ', 'background: linear-gradient(45deg, #2563eb, #10b981); color: white; font-size: 20px; padding: 10px; border-radius: 5px;');
+    </script>
+</body>
+
+</html>

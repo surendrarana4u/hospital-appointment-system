@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        const token = localStorage.getItem('hms_token');
+        const user = JSON.parse(localStorage.getItem('hms_user') || 'null');
+        if (!token || !user || user.role !== 'doctor') {
+          localStorage.removeItem('hms_token');
+          localStorage.removeItem('hms_user');
+          window.location.href = 'index.html';
+        }
+      })();
+    <\/script>
+    <title>Doctor Dashboard - MediCare Plus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 3D Background -->
+    <div class="dashboard-bg-3d">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>MediCare Plus</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-item active" data-section="overview">
+                <i class="fas fa-th-large"></i>
+                <span>Overview</span>
+            </a>
+            <a href="#patients" class="nav-item" data-section="patients">
+                <i class="fas fa-users"></i>
+                <span>My Patients</span>
+            </a>
+            <a href="#prescriptions" class="nav-item" data-section="prescriptions">
+                <i class="fas fa-file-prescription"></i>
+                <span>Prescriptions</span>
+            </a>
+            <a href="#create-prescription" class="nav-item" data-section="create-prescription">
+                <i class="fas fa-plus-circle"></i>
+                <span>Create Prescription</span>
+            </a>
+            <a href="#appointments" class="nav-item" data-section="appointments">
+                <i class="fas fa-calendar-check"></i>
+                <span>Appointments</span>
+            </a>
+            <a href="#profile" class="nav-item" data-section="profile">
+                <i class="fas fa-user-circle"></i>
+                <span>My Profile</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Doctor Dashboard - <span id="doctorName">Dr. Smith</span></h1>
+            </div>
+            <div class="top-bar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Dr. Smith</p>
+                        <p class="user-id">Cardiologist</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                    <p>Your practice summary at a glance</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Total Patients</p>
+                        </div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon green">
+                            <i class="fas fa-file-prescription"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>48</h3>
+                            <p>Prescriptions This Month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Today's Appointments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card card-3d-hover">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Completed Today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Today's Appointments -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-day"></i> Today's Appointments</h3>
+                            <a href="#appointments" class="view-all">View All</a>
+                        </div>
+                        <div class="card-body" id="doctorTodayAppointments">
+                            <!-- Appointments loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Prescriptions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-prescription"></i> Recent Prescriptions</h3>
+                            <a href="#prescriptions" class="view-all">View All</a>
+                        </div>
+                        <div class="card-body" id="doctorRecentPrescriptions">
+                            <!-- Recent prescriptions loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Patients Section -->
+            <section id="patients" class="dashboard-section">
+                <div class="section-header">
+                    <h2>My Patients</h2>
+                    <p>View and manage your patient records</p>
+                </div>
+
+                <div class="reports-table-wrapper card-3d-hover">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>ID</th>
+                                <th>Age</th>
+                                <th>Last Visit</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorPatientsTableBody">
+                            <!-- Patients will be loaded here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Prescriptions Section -->
+            <section id="prescriptions" class="dashboard-section">
+                <div class="section-header">
+                    <h2>My Prescriptions</h2>
+                    <p>View all prescriptions you've created</p>
+                </div>
+
+                <div class="prescriptions-grid" id="doctorPrescriptionsGrid">
+                    <!-- Prescriptions will be loaded here dynamically -->
+                </div>
+            </section>
+
+            <!-- Create Prescription Section -->
+            <section id="create-prescription" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Create Prescription</h2>
+                    <p>Create a new prescription for your patient</p>
+                </div>
+
+                <div class="profile-card card-3d-hover">
+                    <form id="prescriptionForm" class="prescription-form">
+                        <div class="form-section">
+                            <h4><i class="fas fa-user"></i> Patient Information</h4>
+                            <div class="form-row">
+                                <div class="form-group-3d">
+                                    <label for="patientId">
+                                        <i class="fas fa-id-card"></i>
+                                        Patient ID
+                                    </label>
+                                    <input type="text" id="patientId" placeholder="Enter Patient ID" required>
+                                </div>
+                                <div class="form-group-3d">
+                                    <label for="patientName">
+                                        <i class="fas fa-user"></i>
+                                        Patient Name
+                                    </label>
+                                    <input type="text" id="patientName" placeholder="Patient name will auto-fill" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-stethoscope"></i> Diagnosis</h4>
+                            <div class="form-group-3d">
+                                <label for="diagnosis">
+                                    <i class="fas fa-notes-medical"></i>
+                                    Diagnosis
+                                </label>
+                                <input type="text" id="diagnosis" placeholder="Enter diagnosis" required>
+                            </div>
+                            <div class="form-group-3d">
+                                <label for="symptoms">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Symptoms
+                                </label>
+                                <textarea id="symptoms" rows="3" placeholder="Describe symptoms"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-pills"></i> Medications</h4>
+                            <div id="medicationsList">
+                                <div class="medication-item">
+                                    <div class="form-row">
+                                        <div class="form-group-3d">
+                                            <label>Medication Name</label>
+                                            <input type="text" placeholder="e.g., Paracetamol 500mg" class="med-name">
+                                        </div>
+                                        <div class="form-group-3d">
+                                            <label>Dosage</label>
+                                            <input type="text" placeholder="e.g., 1 tablet" class="med-dosage">
+                                        </div>
+                                        <div class="form-group-3d">
+                                            <label>Frequency</label>
+                                            <select class="med-frequency">
+                                                <option value="">Select</option>
+                                                <option value="once">Once daily</option>
+                                                <option value="twice">Twice daily</option>
+                                                <option value="thrice">Three times daily</option>
+                                                <option value="as-needed">As needed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-3d">
+                                        <label>Instructions</label>
+                                        <input type="text" placeholder="e.g., After meal, Before bed" class="med-instructions">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-3d btn-small btn-secondary" onclick="addMedication()">
+                                <i class="fas fa-plus"></i> Add Another Medication
+                            </button>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-flask"></i> Lab Tests (Optional)</h4>
+                            <div class="form-group-3d">
+                                <label>
+                                    <input type="checkbox" id="orderLabTests"> Order Lab Tests
+                                </label>
+                            </div>
+                            <div class="form-group-3d" id="labTestsSection" style="display: none;">
+                                <label for="labTests">
+                                    <i class="fas fa-vial"></i>
+                                    Lab Tests Required
+                                </label>
+                                <textarea id="labTests" rows="3" placeholder="e.g., Complete Blood Count, X-Ray, ECG"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-upload"></i> Upload Prescription (Optional)</h4>
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop handwritten prescription or click to upload</p>
+                                <input type="file" id="prescriptionFile" accept="image/*,.pdf" style="display: none;">
+                                <button type="button" class="btn-3d btn-small btn-secondary" onclick="document.getElementById('prescriptionFile').click()">
+                                    <i class="fas fa-folder-open"></i> Choose File
+                                </button>
+                                <div id="filePreview" class="file-preview"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4><i class="fas fa-comment-medical"></i> Additional Notes</h4>
+                            <div class="form-group-3d">
+                                <label for="notes">
+                                    Notes for Patient
+                                </label>
+                                <textarea id="notes" rows="3" placeholder="Any additional instructions or advice"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-3d btn-primary">
+                                <i class="fas fa-paper-plane"></i> Send to Pharma
+                            </button>
+                            <button type="button" class="btn-3d btn-secondary" onclick="saveDraft()">
+                                <i class="fas fa-save"></i> Save Draft
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="dashboard-section">
+                <div class="section-header">
+                    <h2>Appointments</h2>
+                    <p>Manage your appointment schedule</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-day"></i> Today</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="time-badge">9:00</span>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>John Doe</h4>
+                                    <p>Follow-up Consultation</p>
+                                </div>
+                                <div class="appointment-status">
+                                    <span class="badge badge-primary">Confirmed</span>
+                                </div>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="time-badge">10:30</span>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Jane Smith</h4>
+                                    <p>New Patient Consultation</p>
+                                </div>
+                                <div class="appointment-status">
+                                    <span class="badge badge-warning">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-week"></i> This Week</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="day">16</span>
+                                    <span class="month">Apr</span>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Mike Johnson</h4>
+                                    <p>Cardiac Assessment</p>
+                                </div>
+                                <div class="appointment-status">
+                                    <span class="badge badge-primary">Confirmed</span>
+                                </div>
+                            </div>
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <span class="day">18</span>
+                                    <span class="month">Apr</span>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Sarah Williams</h4>
+                                    <p>ECG Test Follow-up</p>
+                                </div>
+                                <div class="appointment-status">
+                                    <span class="badge badge-primary">Confirmed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="dashboard-section">
+                <div class="section-header">
+                    <h2>My Profile</h2>
+                    <p>Your professional information</p>
+                </div>
+
+                <div class="profile-card card-3d-hover">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Dr. Smith</h3>
+                            <p class="patient-id">Cardiologist</p>
+                            <p class="member-since">Doctor ID: D-001</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="detail-group">
+                            <h4><i class="fas fa-id-badge"></i> Professional Information</h4>
+                            <div class="detail-item">
+                                <span>Full Name:</span>
+                                <strong>Dr. Smith</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Specialty:</span>
+                                <strong>Cardiology</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Experience:</span>
+                                <strong>15 years</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Phone:</span>
+                                <strong>+91 9876543210</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Email:</span>
+                                <strong>dr.smith@medicare.com</strong>
+                            </div>
+                        </div>
+
+                        <div class="detail-group">
+                            <h4><i class="fas fa-clock"></i> Availability</h4>
+                            <div class="detail-item">
+                                <span>Working Hours:</span>
+                                <strong>9:00 AM - 5:00 PM</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Working Days:</span>
+                                <strong>Monday - Saturday</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
